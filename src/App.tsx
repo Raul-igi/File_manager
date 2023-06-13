@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import{FileManagerComponent,NavigationPane, Toolbar, DetailsView,Inject} from '@syncfusion/ej2-react-filemanager';
 function App() {
+  const host_URL ="https://ej2-aspcore-service.azurewebsites.net/";
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <FileManagerComponent ajaxSettings={{
+      url:host_URL+"api/FileManager/FileOperations",
+      downloadUrl: host_URL+"api/FileManager/Download",
+      uploadUrl: host_URL+"api/FileManager/Upload",
+      getImageUrl:host_URL+"api/FileManager/GetImage"
+
+     }}>
+   
+     <Inject services={[NavigationPane, Toolbar , DetailsView]}></Inject>   
+     </FileManagerComponent>
     </div>
   );
 }
 
 export default App;
+
+ 
